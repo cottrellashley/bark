@@ -83,6 +83,11 @@ def load_config(project_dir: Path) -> BarkConfig:
     for item in raw.get("nav", []):
         if isinstance(item, dict):
             for label, path in item.items():
+                # Convert .md paths to clean URLs
+                if path == "index.md":
+                    path = ""
+                elif path.endswith(".md"):
+                    path = path[:-3] + "/"
                 nav_items.append(NavItem(label=label, path=path))
 
     return BarkConfig(

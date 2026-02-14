@@ -61,9 +61,32 @@ def serve_site(project_dir: Path, port: int = 8000) -> None:
 
     output_dir = project_dir / config.build.output_dir
 
-    # Start HTTP server
-    handler = partial(http.server.SimpleHTTPRequestHandler, directory=str(output_dir))
-    server = http.server.HTTPServer(("", port), handler)
+    # Start threaded HTTP server (handles concurrent requests, suppresses BrokenPipeError)
+    class QuietHandler(http.server.SimpleHTTPRequestHandler):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, directory=str(output_dir), **kwargs)
+
+        def log_message(self, fmt, *args):
+            """Only log errors, not every request."""
+            pass
+
+        def handle_one_request(self):
+            try:
+                super().handle_one_request()
+            except BrokenPipeError:
+                pass
+
+        def handle(self):
+            try:
+                super().handle()
+            except BrokenPipeError:
+                pass
+
+    class ThreadedServer(http.server.ThreadingHTTPServer):
+        allow_reuse_address = True
+        allow_reuse_port = True
+
+    server = ThreadedServer(("", port), QuietHandler)
 
     server_thread = threading.Thread(target=server.serve_forever, daemon=True)
     server_thread.start()

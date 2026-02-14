@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +7,56 @@
     {% if site.description %}
     <meta name="description" content="{{ site.description }}">
     {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/pygments.css">
+    <script>
+        // Prevent flash of wrong theme
+        (function() {
+            var saved = localStorage.getItem("bark-theme");
+            if (saved) {
+                document.documentElement.setAttribute("data-theme", saved);
+            } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
     {% block head %}{% endblock %}
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <nav>
             <a href="/" class="site-title">{{ site.name }}</a>
-            <div class="nav-links">
-                {% for item in nav %}
-                <a href="/{{ item.path }}">{{ item.label }}</a>
-                {% endfor %}
+            <div class="nav-right">
+                <div class="nav-links">
+                    {% for item in nav %}
+                    <a href="/{{ item.path }}">{{ item.label }}</a>
+                    {% endfor %}
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
             </div>
         </nav>
     </header>
 
+    <div class="reading-progress" id="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress-bar"></div>
+    </div>
+
+    {% block body %}
     <main>
         {% block content %}{% endblock %}
     </main>
+    {% endblock %}
 
     <footer>
-        <p>&copy; {{ site.author }} &middot; Built with <a href="https://github.com/cottrellashley/bark">Bark</a></p>
+        <div class="footer-inner">
+            <p>&copy; {{ site.author }} &middot; Built with <a href="https://github.com/cottrellashley/bark">Bark</a></p>
+        </div>
     </footer>
 
     <script src="/static/js/main.js"></script>

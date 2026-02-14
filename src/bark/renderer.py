@@ -4,6 +4,7 @@ from pathlib import Path
 
 import jinja2
 import markdown as md_lib
+from markupsafe import Markup
 from pygments.formatters import HtmlFormatter
 
 
@@ -18,9 +19,13 @@ def create_markdown_renderer() -> md_lib.Markdown:
             "toc",
             "attr_list",
             "smarty",
+            "admonition",
+            "md_in_html",
+            "bark.extensions.sidenotes",
         ],
         extension_configs={
             "codehilite": {"css_class": "highlight", "linenums": False},
+            "toc": {"permalink": False, "toc_depth": "2-3"},
         },
     )
 
@@ -48,10 +53,16 @@ def load_theme(theme_name: str, custom_theme_dir: Path | None = None) -> jinja2.
     )
 
 
-def render_markdown(md_renderer: md_lib.Markdown, source: str) -> str:
-    """Convert markdown to HTML, resetting the renderer between calls."""
+def render_markdown(md_renderer: md_lib.Markdown, source: str) -> tuple[Markup, Markup]:
+    """Convert markdown to HTML, resetting the renderer between calls.
+
+    Returns (html_content, toc_html) where toc_html is the table of contents
+    generated from headings.
+    """
     md_renderer.reset()
-    return md_renderer.convert(source)
+    html = Markup(md_renderer.convert(source))
+    toc = Markup(getattr(md_renderer, "toc", ""))
+    return html, toc
 
 
 def get_pygments_css(style: str = "default") -> str:

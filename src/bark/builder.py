@@ -1,11 +1,20 @@
 """Main build pipeline for Bark."""
 
+import math
 import shutil
 from pathlib import Path
 
 from bark.config import BarkConfig
 from bark.content import Post, discover_pages, discover_posts
 from bark.renderer import create_markdown_renderer, get_pygments_css, load_theme, render_markdown
+
+WORDS_PER_MINUTE = 200
+
+
+def estimate_reading_time(text: str) -> int:
+    """Estimate reading time in minutes from raw markdown text."""
+    word_count = len(text.split())
+    return max(1, math.ceil(word_count / WORDS_PER_MINUTE))
 
 
 def collect_tags(posts: list[Post]) -> dict[str, list[Post]]:
@@ -52,9 +61,9 @@ def build_site(config: BarkConfig, project_dir: Path) -> None:
 
     # Step 7: Render individual pages
     for page in pages:
-        html_content = render_markdown(md, page.content_markdown)
+        html_content, toc_html = render_markdown(md, page.content_markdown)
         template = env.get_template("page.html")
-        rendered = template.render(**site_context, page=page, content=html_content)
+        rendered = template.render(**site_context, page=page, content=html_content, toc=toc_html)
 
         if page.slug == "":
             out_path = output_dir / "index.html"
@@ -67,14 +76,17 @@ def build_site(config: BarkConfig, project_dir: Path) -> None:
 
     # Step 8: Render individual posts
     for post in posts:
-        html_content = render_markdown(md, post.content_markdown)
+        html_content, toc_html = render_markdown(md, post.content_markdown)
         template = env.get_template("post.html")
         formatted_date = post.date.strftime(config.blog.date_format)
+        reading_time = estimate_reading_time(post.content_markdown)
         rendered = template.render(
             **site_context,
             post=post,
             content=html_content,
+            toc=toc_html,
             formatted_date=formatted_date,
+            reading_time=reading_time,
         )
 
         post_dir = output_dir / "posts" / post.slug
