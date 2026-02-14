@@ -1,0 +1,1 @@
+/* Bark — minimal JS */

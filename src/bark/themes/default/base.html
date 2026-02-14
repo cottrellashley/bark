@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    {% if site.description %}
+    <meta name="description" content="{{ site.description }}">
+    {% endif %}
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/pygments.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="site-title">{{ site.name }}</a>
+            <div class="nav-links">
+                {% for item in nav %}
+                <a href="/{{ item.path }}">{{ item.label }}</a>
+                {% endfor %}
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ site.author }} &middot; Built with <a href="https://github.com/cottrellashley/bark">Bark</a></p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
