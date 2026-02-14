@@ -9,7 +9,7 @@ from pygments.formatters import HtmlFormatter
 
 
 def create_markdown_renderer() -> md_lib.Markdown:
-    """Create a Markdown instance with extensions for blog content."""
+    """Create a Markdown instance with extensions for site content."""
     return md_lib.Markdown(
         extensions=[
             "meta",

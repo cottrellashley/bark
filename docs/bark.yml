@@ -1,0 +1,27 @@
+site:
+  name: "Bark"
+  url: "https://cottrellashley.github.io/bark"
+  description: "Documentation for Bark — a static site generator"
+  author: "Ashley Cottrell"
+
+content:
+  dir: "content"
+
+build:
+  output_dir: "dist"
+
+collections:
+  guide:
+    sort: "alphabetical"
+    items_per_page: 0
+    tags: false
+    archive: false
+    layout: "minimal"
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Guide: guide/
+
+theme:
+  name: "default"

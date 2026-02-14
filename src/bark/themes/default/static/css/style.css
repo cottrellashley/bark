@@ -1114,34 +1114,157 @@ main {
 }
 
 /* ================================================================
-   BLOG INDEX
+   COLLECTION INDEX
    ================================================================ */
 
-.blog-index {
+.collection-index {
     max-width: var(--width-body);
     margin: 0 auto;
 }
 
-.blog-header {
+/* Grid layout needs wider container for multi-column cards */
+.collection-index:has(.layout-grid) {
+    max-width: var(--width-total);
+}
+
+.collection-header {
     margin-bottom: 3rem;
 }
 
-.blog-header h1 {
+.collection-header h1 {
     font-size: 2.25rem;
     font-weight: 800;
     letter-spacing: -0.03em;
 }
 
-.blog-subtitle {
+.collection-subtitle {
     color: var(--color-text-muted);
     font-size: 1.0625rem;
     margin-top: 0.5rem;
 }
 
-.post-list {
+/* ── Timeline layout (default — chronological list) ───────────── */
+
+.layout-timeline {
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+/* ── Grid layout (responsive cards) ───────────────────────────── */
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+a.grid-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--t-med);
+}
+
+a.grid-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 20px var(--color-card-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.grid-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.grid-card-excerpt {
+    color: var(--color-text-secondary);
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-top: 0.625rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.grid-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border-light);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.grid-card-tags {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+}
+
+.grid-tag {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+}
+
+/* ── Minimal layout (dense title list) ────────────────────────── */
+
+.layout-minimal {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.layout-minimal li {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.layout-minimal li:last-child {
+    border-bottom: none;
+}
+
+.layout-minimal time {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    min-width: 6.5rem;
+    flex-shrink: 0;
+}
+
+.layout-minimal a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--t-fast);
+}
+
+.layout-minimal a:hover {
+    color: var(--color-accent);
 }
 
 a.post-card {

@@ -1,16 +1,21 @@
 """Configuration loading and validation for Bark."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import yaml
+
+VALID_LAYOUTS = ("timeline", "grid", "minimal")
+VALID_SORTS = ("newest_first", "oldest_first", "alphabetical")
 
 
 @dataclass
 class SiteConfig:
     """Site-level configuration."""
 
-    name: str = "My Blog"
+    name: str = "My Site"
     url: str = "https://example.com"
     description: str = ""
     author: str = ""
@@ -21,7 +26,6 @@ class ContentConfig:
     """Content directory configuration."""
 
     dir: str = "content"
-    posts_dir: str = "posts"
 
 
 @dataclass
@@ -32,14 +36,15 @@ class BuildConfig:
 
 
 @dataclass
-class BlogConfig:
-    """Blog-specific configuration."""
+class CollectionConfig:
+    """Configuration for a single content collection."""
 
-    posts_per_page: int = 10
+    items_per_page: int = 10
     date_format: str = "%B %d, %Y"
     sort: str = "newest_first"
     tags: bool = True
     archive: bool = True
+    layout: str = "timeline"
 
 
 @dataclass
@@ -64,7 +69,7 @@ class BarkConfig:
     site: SiteConfig = field(default_factory=SiteConfig)
     content: ContentConfig = field(default_factory=ContentConfig)
     build: BuildConfig = field(default_factory=BuildConfig)
-    blog: BlogConfig = field(default_factory=BlogConfig)
+    collections: dict[str, CollectionConfig] = field(default_factory=dict)
     theme: ThemeConfig = field(default_factory=ThemeConfig)
     nav: list[NavItem] = field(default_factory=list)
 
@@ -90,11 +95,51 @@ def load_config(project_dir: Path) -> BarkConfig:
                     path = path[:-3] + "/"
                 nav_items.append(NavItem(label=label, path=path))
 
+    # Parse collections
+    collections = _parse_collections(raw)
+
     return BarkConfig(
         site=SiteConfig(**raw.get("site", {})),
         content=ContentConfig(**raw.get("content", {})),
         build=BuildConfig(**raw.get("build", {})),
-        blog=BlogConfig(**raw.get("blog", {})),
+        collections=collections,
         theme=ThemeConfig(**raw.get("theme", {})),
         nav=nav_items,
     )
+
+
+def _parse_collections(raw: dict) -> dict[str, CollectionConfig]:
+    """Parse collections from raw config, with backward compat for old blog: format."""
+    collections: dict[str, CollectionConfig] = {}
+
+    if "collections" in raw:
+        # New format: collections: { name: { settings } }
+        for name, settings in raw["collections"].items():
+            settings = settings or {}
+            coll = CollectionConfig(**settings)
+            if coll.layout not in VALID_LAYOUTS:
+                msg = f"Invalid layout '{coll.layout}' for collection '{name}'. Must be one of: {', '.join(VALID_LAYOUTS)}"
+                raise ValueError(msg)
+            if coll.sort not in VALID_SORTS:
+                msg = f"Invalid sort '{coll.sort}' for collection '{name}'. Must be one of: {', '.join(VALID_SORTS)}"
+                raise ValueError(msg)
+            collections[name] = coll
+
+    elif "blog" in raw:
+        # Backward compat: convert old blog: config to a single collection
+        blog_raw = raw.get("blog", {})
+        content_raw = raw.get("content", {})
+        posts_dir = content_raw.get("posts_dir", "posts")
+
+        # Map old field names to new ones
+        coll_settings = {
+            "items_per_page": blog_raw.get("posts_per_page", 10),
+            "date_format": blog_raw.get("date_format", "%B %d, %Y"),
+            "sort": blog_raw.get("sort", "newest_first"),
+            "tags": blog_raw.get("tags", True),
+            "archive": blog_raw.get("archive", True),
+            "layout": "timeline",
+        }
+        collections[posts_dir] = CollectionConfig(**coll_settings)
+
+    return collections

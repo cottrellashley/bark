@@ -5,14 +5,14 @@ build-backend = "hatchling.build"
 [project]
 name = "bark"
 version = "0.1.0"
-description = "A blog-focused static site generator"
+description = "A static site generator"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
     { name = "Ashley Cottrell" },
 ]
-keywords = ["blog", "static-site-generator", "markdown", "cli"]
+keywords = ["static-site-generator", "markdown", "cli", "collections"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",

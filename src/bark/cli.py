@@ -1,4 +1,4 @@
-"""Bark CLI — a blog-focused static site generator."""
+"""Bark CLI — a static site generator."""
 
 from pathlib import Path
 
@@ -7,7 +7,7 @@ from rich.console import Console
 
 app = typer.Typer(
     name="bark",
-    help="A blog-focused static site generator.",
+    help="A static site generator.",
     no_args_is_help=True,
 )
 console = Console()
@@ -42,13 +42,13 @@ def serve(
 
 @app.command()
 def new(
-    name: str = typer.Argument(..., help="Name of the new blog project"),
+    name: str = typer.Argument(..., help="Name of the new project"),
 ) -> None:
-    """Scaffold a new blog project."""
+    """Scaffold a new project."""
     from bark.scaffold import create_project
 
     create_project(name)
-    console.print(f"[bold green]Created new blog project: {name}/[/bold green]")
+    console.print(f"[bold green]Created new project: {name}/[/bold green]")
     console.print(f"\n  cd {name}")
     console.print("  bark build")
     console.print("  bark serve\n")
