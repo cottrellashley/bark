@@ -1,41 +1,41 @@
 ---
 title: "CLI Reference"
-description: "Command-line interface for Bark."
+description: "Command-line interface for OpenDoc."
 ---
 
 # CLI Reference
 
-Bark provides three commands: `new`, `build`, and `serve`.
+OpenDoc provides three commands: `new`, `build`, and `serve`.
 
-## `bark new`
+## `opendoc new`
 
 Scaffold a new project.
 
 ```bash
-bark new <name>
+opendoc new <name>
 ```
 
 Creates a directory with:
 
-- `bark.yml` — default configuration
+- `opendoc.yml` — default configuration
 - `content/index.md` — home page
 - `content/about.md` — about page
 - `content/writing/hello-world.md` — example entry
 - `.gitignore`
 
-## `bark build`
+## `opendoc build`
 
 Build the static site.
 
 ```bash
-bark build [project_dir]
+opendoc build [project_dir]
 ```
 
 | Argument | Default | Description |
 |----------|---------|-------------|
 | `project_dir` | `.` (current directory) | Path to the project |
 
-Reads `bark.yml`, processes all content, and writes the static site to the configured `output_dir` (default: `dist/`).
+Reads `opendoc.yml`, processes all content, and writes the static site to the configured `output_dir` (default: `dist/`).
 
 The build pipeline:
 
@@ -48,12 +48,12 @@ The build pipeline:
 7. Generate Pygments CSS for syntax highlighting
 8. Copy user static assets from `content/static/`
 
-## `bark serve`
+## `opendoc serve`
 
 Build and serve locally with live reload.
 
 ```bash
-bark serve [project_dir] [--port PORT]
+opendoc serve [project_dir] [--port PORT]
 ```
 
 | Argument/Option | Default | Description |
@@ -64,7 +64,7 @@ bark serve [project_dir] [--port PORT]
 The server:
 
 - Builds the site on startup
-- Watches `content/` and `bark.yml` for changes
+- Watches `content/` and `opendoc.yml` for changes
 - Rebuilds automatically when files change
 - Serves the built site over HTTP
 

@@ -5,7 +5,7 @@ description: "Timeline, grid, and minimal index page layouts."
 
 # Layouts
 
-Each collection can use a different layout for its index page. Set the `layout` field in `bark.yml`:
+Each collection can use a different layout for its index page. Set the `layout` field in `opendoc.yml`:
 
 ```yaml
 collections:

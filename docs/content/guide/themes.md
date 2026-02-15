@@ -5,7 +5,7 @@ description: "How the default theme works and how to customise it."
 
 # Themes
 
-Bark uses Jinja2 templates and CSS for theming. The default theme is a professional, Tufte-inspired design with dark mode support.
+OpenDoc uses Jinja2 templates and CSS for theming. The default theme is a professional, Tufte-inspired design with dark mode support.
 
 ## Default Theme
 
@@ -47,7 +47,7 @@ All templates have access to:
 |----------|-------------|
 | `site` | Site config (name, url, description, author) |
 | `nav` | Navigation items list |
-| `config` | Full Bark configuration |
+| `config` | Full OpenDoc configuration |
 
 Entry templates additionally get:
 

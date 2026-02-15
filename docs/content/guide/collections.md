@@ -5,11 +5,11 @@ description: "How to organise content into named groups."
 
 # Collections
 
-Collections are the core organisational unit in Bark. Each collection is a named group of related content with its own directory, URL prefix, index page, and settings.
+Collections are the core organisational unit in OpenDoc. Each collection is a named group of related content with its own directory, URL prefix, index page, and settings.
 
 ## Defining Collections
 
-Add collections to `bark.yml`:
+Add collections to `opendoc.yml`:
 
 ```yaml
 collections:
@@ -41,7 +41,7 @@ content/
 │   ├── first-post.md
 │   └── second-post.md
 ├── projects/             # "projects" collection
-│   ├── bark.md
+│   ├── opendoc.md
 │   └── quantum-sim.md
 └── notes/                # "notes" collection
     └── random-thought.md
@@ -71,7 +71,7 @@ If a collection uses `sort: alphabetical`, dates are optional. Entries without d
 
 ## Generated Output
 
-For a collection named `writing`, Bark generates:
+For a collection named `writing`, OpenDoc generates:
 
 | Path | Content |
 |------|---------|

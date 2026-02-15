@@ -1,44 +1,32 @@
-# ── Build outputs ──────────────────────────────────────────────
-dist/
-build/
-*.egg-info/
-*.egg
-MANIFEST
-
-# ── Python ────────────────────────────────────────────────────
-__pycache__/
-*.py[cod]
-*$py.class
+# ── Go ────────────────────────────────────────────────────────
+opendoc
+*.exe
+*.dll
 *.so
+*.dylib
 
-# ── Virtual environments ──────────────────────────────────────
-.venv/
+# ── Build outputs ────────────────────────────────────────────
+dist/
+dist-publish/
+
+# ── Environment ──────────────────────────────────────────────
 .env
 
-# ── Testing & coverage ────────────────────────────────────────
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-coverage.xml
-coverage.json
-*.cover
-*.py,cover
-
-# ── Linting & tools ──────────────────────────────────────────
-.ruff_cache/
-.mypy_cache/
-
-# ── IDE / OS ──────────────────────────────────────────────────
+# ── IDE / OS ─────────────────────────────────────────────────
 .idea/
 .vscode/
 .DS_Store
+*.swp
+*.swo
 
-# ── Bark generated sites (demo, docs) ────────────────────────
-demo-site/dist/
+# ── Docker workspace (volume mount) ─────────────────────────
+workspace/
+
+# ── OpenDoc generated sites ─────────────────────────────────
 docs/dist/
+docs/dist-publish/
 
-# ── Misc ──────────────────────────────────────────────────────
+# ── Misc ─────────────────────────────────────────────────────
 *.log
 .output.txt
 local.mk

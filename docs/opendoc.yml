@@ -1,0 +1,28 @@
+build:
+    output_dir: dist
+collections:
+    guide:
+        archive: false
+        items_per_page: 0
+        layout: minimal
+        sort: alphabetical
+        tags: false
+content:
+    dir: content
+nav:
+    - Home: index.md
+    - Getting Started: getting-started.md
+    - Guide: guide/?
+    - Blog: blog.md
+    - Calendar: calendar.md?
+    - Health: health.md
+    - Physics: physics.md
+    - Console: console.md
+    - Workspace: workspace.md
+site:
+    author: Ashley Cottrell
+    description: Documentation for OpenDoc — a static site generator
+    name: OpenDoc
+    url: https://cottrellashley.github.io/bark
+theme:
+    name: default

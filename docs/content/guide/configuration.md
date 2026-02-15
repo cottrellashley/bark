@@ -1,11 +1,11 @@
 ---
 title: "Configuration"
-description: "Full reference for bark.yml settings."
+description: "Full reference for opendoc.yml settings."
 ---
 
 # Configuration
 
-All Bark settings live in `bark.yml` at the root of your project. Here is a complete example with all available options:
+All OpenDoc settings live in `opendoc.yml` at the root of your project. Here is a complete example with all available options:
 
 ```yaml
 site:
@@ -93,7 +93,7 @@ Paths ending in `.md` are converted to clean URLs automatically (`about.md` beco
 
 ## Backward Compatibility
 
-If you have an older `bark.yml` with a `blog:` section instead of `collections:`, Bark will automatically convert it:
+If you have an older `opendoc.yml` with a `blog:` section instead of `collections:`, OpenDoc will automatically convert it:
 
 ```yaml
 # Old format (still works)

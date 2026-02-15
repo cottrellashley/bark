@@ -5,7 +5,7 @@ description: "Tufte-style sidenotes, widgets, and deep dives."
 
 # Margin Notes
 
-Bark supports Tufte-style margin notes — supplementary content that appears alongside the main text. On desktop, they float in the right margin. On mobile, they appear as tappable links that open a bottom sheet.
+OpenDoc supports Tufte-style margin notes — supplementary content that appears alongside the main text. On desktop, they float in the right margin. On mobile, they appear as tappable links that open a bottom sheet.
 
 ## Syntax
 
@@ -71,4 +71,4 @@ function startWave() {
 :::
 ```
 
-Bark's theme automatically styles buttons, range inputs, and canvas elements inside margin notes to match the current theme (including dark mode).
+OpenDoc's theme automatically styles buttons, range inputs, and canvas elements inside margin notes to match the current theme (including dark mode).

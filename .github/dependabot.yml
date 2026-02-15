@@ -1,31 +1,17 @@
-# This file is part of the jebel-quant/rhiza repository
-# (https://github.com/jebel-quant/rhiza).
-#
-# Configuration: Dependabot
-#
-# Purpose: Automate dependency updates for Python packages, GitHub Actions, and Docker images.
-#
-# Documentation: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
-  # Python dependencies using uv
-  - package-ecosystem: "uv"
+  # Go modules
+  - package-ecosystem: "gomod"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "tuesday"
-      time: "09:00"
-      timezone: "Asia/Dubai"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
-      - "python"
+      - "go"
     groups:
-      python-dependencies:
+      go-dependencies:
         patterns:
           - "*"
         update-types:
@@ -33,7 +19,6 @@ updates:
           - "minor"
     commit-message:
       prefix: "chore(deps)"
-      prefix-development: "chore(deps-dev)"
       include: "scope"
 
   # GitHub Actions
@@ -42,11 +27,6 @@ updates:
     schedule:
       interval: "weekly"
       day: "tuesday"
-      time: "09:00"
-      timezone: "Asia/Dubai"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
@@ -58,23 +38,20 @@ updates:
         update-types:
           - "patch"
           - "minor"
-          
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
 
   # Docker
-  #- package-ecosystem: "docker"
-  #  directory: "/docker"
-  #  schedule:
-  #    interval: "weekly"
-  #    day: "tuesday"
-  #    time: "09:00"
-  #    timezone: "Asia/Dubai"
-  #  open-pull-requests-limit: 10
-  #  labels:
-  #    - "dependencies"
-  #    - "docker"
-  #  commit-message:
-  #    prefix: "chore(deps)"
-  #    include: "scope"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
