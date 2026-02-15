@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started &mdash; OpenDoc</title>
+    
+    <meta name="description" content="Documentation for OpenDoc — a static site generator">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bark/static/css/style.css">
+    <link rel="stylesheet" href="/bark/static/css/pygments.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css">
+    <script>
+        // Prevent flash of wrong theme
+        (function() {
+            var saved = localStorage.getItem("opendoc-theme");
+            if (saved) {
+                document.documentElement.setAttribute("data-theme", saved);
+            } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
+    
+</head>
+<body>
+    <header class="site-header">
+        <nav>
+            <a href="/bark/" class="site-title">OpenDoc</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    
+                    <a href="/bark/">Home</a>
+                    
+                    <a href="/bark/getting-started/">Getting Started</a>
+                    
+                    <a href="/bark/blog/">Blog</a>
+                    
+                    <a href="/bark/health/">Health</a>
+                    
+                    <a href="/bark/physics/">Physics</a>
+                    
+                    <a href="/bark/console/">Console</a>
+                    
+                    <a href="/bark/workspace/">Workspace</a>
+                    
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="reading-progress" id="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress-bar"></div>
+    </div>
+
+    
+    <main>
+        
+<article class="page-article">
+    <h1>Getting Started</h1>
+    <div class="content">
+        <h1 id="getting-started">Getting Started</h1>
+<p>This guide walks you through creating your first OpenDoc site from scratch.</p>
+<h2 id="installation">Installation</h2>
+<p>Install OpenDoc with pip:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>pip install opendoc
+</span></span></code></pre><p>Or with <a href="https://docs.astral.sh/uv/">uv</a>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>uv add opendoc
+</span></span></code></pre><h2 id="create-a-new-site">Create a New Site</h2>
+<p>Scaffold a new project:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>opendoc new my-site
+</span></span></code></pre><p>This creates the following structure:</p>
+<pre><code>my-site/
+├── opendoc.yml                # Site configuration
+├── content/
+│   ├── index.md            # Home page
+│   ├── about.md            # About page
+│   └── writing/
+│       └── hello-world.md  # First post
+└── .gitignore
+</code></pre>
+<h2 id="build-and-serve">Build and Serve</h2>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>cd my-site
+</span></span><span style="display:flex;"><span>opendoc build    <span style="color:#75715e"># Generates dist/</span>
+</span></span><span style="display:flex;"><span>opendoc serve    <span style="color:#75715e"># Starts dev server at http://localhost:8000</span>
+</span></span></code></pre><p>The dev server watches for changes and rebuilds automatically.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>An OpenDoc project has three parts:</p>
+<h3 id="1-opendocyml--configuration">1. <code>opendoc.yml</code> — Configuration</h3>
+<p>All site settings live here: site metadata, collections, navigation, and theme.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span><span style="color:#f92672">site</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;My Site&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">author</span>: <span style="color:#e6db74">&#34;Your Name&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">collections</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">writing</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">layout</span>: <span style="color:#ae81ff">timeline</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sort</span>: <span style="color:#ae81ff">newest_first</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">nav</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">Home</span>: <span style="color:#ae81ff">index.md</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">Writing</span>: <span style="color:#ae81ff">writing/</span>
+</span></span></code></pre><h3 id="2-content--your-content">2. <code>content/</code> — Your Content</h3>
+<p>Markdown files with YAML frontmatter. Top-level files become <strong>pages</strong>. Files inside collection directories become <strong>entries</strong>.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;My First Post&#34;
+</span></span><span style="display:flex;"><span>date: 2026-02-14
+</span></span><span style="display:flex;"><span>tags: [hello, opendoc]
+</span></span><span style="display:flex;"><span>description: &#34;A short intro.&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Your content here...
+</span></span></code></pre><h3 id="3-dist--generated-output">3. <code>dist/</code> — Generated Output</h3>
+<p>Running <code>opendoc build</code> produces a static site in <code>dist/</code>. Deploy this directory to any static host (GitHub Pages, Netlify, Vercel, S3, etc.).</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li><a href="/guide/configuration/">Configuration</a> — full reference for <code>opendoc.yml</code></li>
+<li><a href="/guide/collections/">Collections</a> — how to organise content</li>
+<li><a href="/guide/layouts/">Layouts</a> — timeline, grid, and minimal index styles</li>
+<li><a href="/guide/margin-notes/">Margin Notes</a> — Tufte-style sidenotes and widgets</li>
+</ul>
+
+    </div>
+</article>
+
+    </main>
+    
+
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; Ashley Cottrell &middot; Built with <a href="https://github.com/cottrellashley/bark">OpenDoc</a></p>
+        </div>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js"></script>
+    <script defer src="/bark/static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace &mdash; OpenDoc</title>
+    
+    <meta name="description" content="Documentation for OpenDoc — a static site generator">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bark/static/css/style.css">
+    <link rel="stylesheet" href="/bark/static/css/pygments.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css">
+    <script>
+        // Prevent flash of wrong theme
+        (function() {
+            var saved = localStorage.getItem("opendoc-theme");
+            if (saved) {
+                document.documentElement.setAttribute("data-theme", saved);
+            } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
+    
+</head>
+<body>
+    <header class="site-header">
+        <nav>
+            <a href="/bark/" class="site-title">OpenDoc</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    
+                    <a href="/bark/">Home</a>
+                    
+                    <a href="/bark/getting-started/">Getting Started</a>
+                    
+                    <a href="/bark/blog/">Blog</a>
+                    
+                    <a href="/bark/health/">Health</a>
+                    
+                    <a href="/bark/physics/">Physics</a>
+                    
+                    <a href="/bark/console/">Console</a>
+                    
+                    <a href="/bark/workspace/">Workspace</a>
+                    
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="reading-progress" id="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress-bar"></div>
+    </div>
+
+    
+    <main>
+        
+<article class="page-article">
+    <h1>Workspace</h1>
+    <div class="content">
+        <h1 id="workspace">Workspace</h1>
+<p>Use the terminal below to edit your site content. Changes are detected automatically and the page will update live.</p>
+<p>Try running <code>claude</code> to use AI-assisted content generation, or use standard shell commands to create and edit markdown files.</p>
+<div class="opendoc-terminal" data-mode="shell" data-height="400px"></div>
+<h2 id="quick-commands">Quick Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opendoc build /workspace</code></td>
+<td>Rebuild the site</td>
+</tr>
+<tr>
+<td><code>ls /workspace/content/</code></td>
+<td>List content files</td>
+</tr>
+<tr>
+<td><code>claude</code></td>
+<td>Start Claude Code AI assistant</td>
+</tr>
+<tr>
+<td><code>vim /workspace/content/index.md</code></td>
+<td>Edit the homepage</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+</article>
+
+    </main>
+    
+
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; Ashley Cottrell &middot; Built with <a href="https://github.com/cottrellashley/bark">OpenDoc</a></p>
+        </div>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js"></script>
+    <script defer src="/bark/static/js/main.js"></script>
+</body>
+</html>

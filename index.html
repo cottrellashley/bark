@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenDoc Documentation &mdash; OpenDoc</title>
+    
+    <meta name="description" content="Documentation for OpenDoc — a static site generator">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bark/static/css/style.css">
+    <link rel="stylesheet" href="/bark/static/css/pygments.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css">
+    <script>
+        // Prevent flash of wrong theme
+        (function() {
+            var saved = localStorage.getItem("opendoc-theme");
+            if (saved) {
+                document.documentElement.setAttribute("data-theme", saved);
+            } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
+    
+</head>
+<body>
+    <header class="site-header">
+        <nav>
+            <a href="/bark/" class="site-title">OpenDoc</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    
+                    <a href="/bark/">Home</a>
+                    
+                    <a href="/bark/getting-started/">Getting Started</a>
+                    
+                    <a href="/bark/blog/">Blog</a>
+                    
+                    <a href="/bark/health/">Health</a>
+                    
+                    <a href="/bark/physics/">Physics</a>
+                    
+                    <a href="/bark/console/">Console</a>
+                    
+                    <a href="/bark/workspace/">Workspace</a>
+                    
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="reading-progress" id="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress-bar"></div>
+    </div>
+
+    
+    <main>
+        
+<article class="page-article">
+    <h1>OpenDoc Documentation</h1>
+    <div class="content">
+        <p align="center">
+  <img src="/static/img/logo.png" alt="OpenDoc" width="280">
+</p>
+<p>A static site generator. Write content in markdown, organise it into collections, and build elegant static sites.</p>
+<p>This documentation is itself built with OpenDoc.</p>
+<h2 id="quick-start">Quick Start</h2>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;"><code><span style="display:flex;"><span>opendoc new my-site
+</span></span><span style="display:flex;"><span>cd my-site
+</span></span><span style="display:flex;"><span>opendoc serve
+</span></span></code></pre><p>That&rsquo;s it. You have a running site. Read the <a href="/getting-started/">Getting Started</a> guide for the full walkthrough, or browse the <a href="/guide/">Guide</a> for detailed reference on each feature.</p>
+<h2 id="key-concepts">Key Concepts</h2>
+<p><strong>Pages</strong> are standalone markdown files in <code>content/</code> — things like your home page, about page, or contact page.</p>
+<p><strong>Collections</strong> are groups of related content in subdirectories — writing, projects, notes, or whatever you need. Each collection has its own index page, layout, and optional tags and archive.</p>
+<p><strong>Themes</strong> control the visual presentation. OpenDoc ships with a default theme featuring dark mode, responsive design, and Tufte-style margin notes.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Collections</strong> — named content groups with independent settings</li>
+<li><strong>Layouts</strong> — timeline, grid, or minimal index pages</li>
+<li><strong>Dark mode</strong> — system-aware with manual toggle</li>
+<li><strong>Margin notes</strong> — Tufte-style sidenotes with interactive widgets</li>
+<li><strong>LaTeX equations</strong> — inline and display math via KaTeX, with equation numbering and cross-referencing</li>
+<li><strong>Theorem environments</strong> — academic-style theorem, definition, lemma, proof blocks with auto-numbering</li>
+<li><strong>Tabbed code blocks</strong> — switchable panels with emoji labels and copy-to-clipboard</li>
+<li><strong>Syntax highlighting</strong> — Monokai colour scheme via Pygments</li>
+<li><strong>Live reload</strong> — dev server rebuilds on file changes</li>
+<li><strong>Tags &amp; archive</strong> — per-collection, auto-generated</li>
+</ul>
+
+    </div>
+</article>
+
+    </main>
+    
+
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; Ashley Cottrell &middot; Built with <a href="https://github.com/cottrellashley/bark">OpenDoc</a></p>
+        </div>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js"></script>
+    <script defer src="/bark/static/js/main.js"></script>
+</body>
+</html>

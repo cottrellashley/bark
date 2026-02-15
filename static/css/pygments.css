@@ -1,0 +1,17 @@
+/* highlight.js — Monokai theme */
+.highlight pre { margin: 0; padding: 0; }
+.highlight code.hljs { display: block; overflow-x: auto; padding: 1em; }
+.hljs { color: #f8f8f2; background: #272822; }
+.hljs-tag, .hljs-subst { color: #f8f8f2; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
+.hljs-bullet, .hljs-quote, .hljs-regexp, .hljs-literal, .hljs-link { color: #ae81ff; }
+.hljs-number, .hljs-doctag { color: #ae81ff; }
+.hljs-code, .hljs-title, .hljs-section, .hljs-selector-class { color: #a6e22e; }
+.hljs-title.class_.inherited__ { color: #a6e22e; }
+.hljs-keyword, .hljs-selector-tag, .hljs-name { color: #f92672; }
+.hljs-attr, .hljs-attribute { color: #a6e22e; }
+.hljs-symbol, .hljs-variable, .hljs-template-variable, .hljs-template-tag { color: #66d9ef; }
+.hljs-params { color: #f8f8f2; }
+.hljs-string, .hljs-type, .hljs-built_in, .hljs-selector-id, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-addition { color: #e6db74; }
+.hljs-comment, .hljs-deletion, .hljs-meta { color: #75715e; }
